@@ -2,6 +2,7 @@
 title: JS中的对象克隆（拷贝）
 date: 2018-08-28 10:48:28
 tags: [JavaScript,编程,Web]
+categories: 前端
 ---
 在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。
 

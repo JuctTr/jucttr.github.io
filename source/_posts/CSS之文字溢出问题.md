@@ -1,0 +1,61 @@
+---
+title: CSS之文字溢出问题
+date: 2019-03-17 22:03:38
+tags: [CSS,Web]
+categories: 前端
+---
+在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。
+
+<!--more-->
+
+# 如何将文字超出元素的部分变成省略号...
+
+- **单行**文本溢出变成省略号
+
+```html
+		<style>
+			p{
+				width: 200px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			拉丝粉了解萨达卡视角开发商拉丝粉了解萨达卡视角开发商拉丝粉了解萨达卡视角开发商拉丝粉了解萨达卡视角开发商
+		</p>
+	</body>
+```
+
+- **多行**文本溢出变成省略号
+
+```html
+		<style>
+			p{
+				width: 200px;
+				overflow:hidden; 
+				text-overflow:ellipsis;
+				display:-webkit-box; 
+				-webkit-box-orient:vertical;
+				-webkit-line-clamp:2;
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			拉丝粉了解萨达卡视角开发商拉丝粉了解萨达卡视角开发商拉丝粉了解萨达卡视角开发商拉丝粉了解萨达卡视角开发商
+		</p>
+	</body>
+```
+
+
+
+
+><span style="font-size:12px">
+	文章标题: <a href="{{permalink}}">{{ title }}</a>
+	文章作者: <a href="https://github.com/WangYiCong">王奕聪，QQ:1301842163</a>  
+	许可协议: <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" style="display: inline !important;margin:0;padding:0;" alt="知识共享许可协议">
+			  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">©署名-非商用-相同方式共享 4.0</a>
+</span>

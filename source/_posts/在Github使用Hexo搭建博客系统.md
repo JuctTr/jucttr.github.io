@@ -2,6 +2,7 @@
 title: 在Github使用Hexo搭建博客系统
 date: 2016-04-01 21:43:41
 tags: [编程,Git,Github]
+categories: 博客
 ---
 
 # 一、配置Github环境

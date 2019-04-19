@@ -1,0 +1,212 @@
+---
+title: call、apply、bind的区别与应用场景
+categories: 前端
+date: 2019-03-27 23:08:13
+tags: [JavaScript,Web,编程]
+---
+在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。
+
+
+# call、apply、bind的区别与应用场景
+>**前言：**读者在看这篇文章的时候，你必须弄懂作用域以及JavaScript中this的作用和运用场景。
+<!--more-->
+https://juejin.im/post/59bfe84351882531b730bac2
+https://wangdoc.com/javascript/oop/this.html
+http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html
+## 一、概念
+- 为什么会有call和apply？
+call和apply两个方法的作用基本相同，它们都是为了改变某个函数执行时的上下文（context）而建立的， 他的真正强大之处就是能够扩充函数赖以运行的作用域。通俗一点讲，就是改变函数体内部**this 的指向**。
+#### 举个栗子：
+```javascript
+window.color = "red";
+var o = {color: "blue"};
+function sayColor(){
+	alert(this.color);
+}
+sayColor();//red
+sayColor.call(this);//red，把函数体sayColor内部的this，绑到当前环境（作用域）(这段代码所处的环境)
+sayColor.call(window);//red，把函数体sayColor内部的this，绑到window（全局作用域）
+sayColor.call(o);//blue
+```
+>**解释：**上面的栗子，很明显函数sayColor是在全局作用域（环境/window）中调用的，而全局作用域中有一个color属性，值为"red"，sayColor.call(this)这一行代码就是表示**把函数体sayColor内部的this，绑到当前环境（作用域）**，而sayColor.call(window)这一行代码就是表示**把函数体sayColor内部的this，绑到window（全局作用域）**，之所以这两行的输出都是"red"就是因为他当前作用域的this就是window（this === window）；
+最后，sayColor.call(o)这一行代码就表示**把函数体sayColor内部的this，绑到o这个对象的执行环境（上下文）中来**，也就是说sayColor内部的this——>**o**
+
+## 二、call(thisValue, arg1, arg2, ...)
+```javascript
+window.color = "red";
+var o = {color: "blue"};
+function sayColor(){
+	alert(this.color);
+}
+sayColor.call(this);//red
+sayColor.call(window);//red
+sayColor.call();
+sayColor.call(null);
+sayColor.call(undefined);
+sayColor.call(o);//blue
+```
+>**注意：**如果call方法没有参数，或者参数为**null或undefined**，则等同于指向**全局对象**。
+### 应用场景
+- ####  判断对象类型
+```javascript
+var arr = [];
+Object.prototype.toString.call(arr);//[object Array]
+//把函数体Object.prototype.toString()方法内部的this，绑到arr的执行环境（作用域）
+```
+- #### 同样是检测对象类型，arr.toString()的结果和Object.prototype.toString.call(arr)的结果不一样，这是为什么？
+>这是因为toString()为Object的原型方法，而Array ，function等引用类型作为Object的实例，都重写了toString方法。不同的对象类型调用toString方法时，根据原型链的知识，调用的是对应的**重写**之后的toString方法（function类型返回内容为函数体的字符串，Array类型返回元素组成的字符串.....），而不会去调用Object上原型toString方法，所以采用arr.toString()不能得到其对象类型，只能将arr转换为字符串类型；因此，在想要得到对象的具体类型时，应该调用Object上原型toString方法。
+**参考：**
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString#Using_toString()_to_detect_object_class
+### 手撕call
+```javascript
+	var foo = {
+	  count: 1
+	};
+	function bar() {
+	  console.log(this.count);
+	}
+	bar.myCall(foo); // 1
+--------------------------------------------------------------------
+	Function.prototype.myCall = function(context) {
+	  // 取得传入的对象（执行上下文），比如上文的foo对象，这里的context就相当于上文的foo
+	  // 不传第一个参数，默认是window,
+	  var context = context || window;
+	  // 给context添加一个属性，这时的this指向调用myCall的函数，比如上文的bar函数
+	  context.fn = this;//这里的context.fn就相当于上文的bar函数
+	  // 通过展开运算符和解构赋值取出context后面的参数，上文的例子没有传入参数列表
+	  var args = [...arguments].slice(1);
+	  // 执行函数（相当于上文的bar(...args)）
+	  var result = context.fn(...args);
+	  // 删除函数
+	  delete context.fn;
+	  return result;
+	};
+```
+## 三、apply(thisValue, [arg1, arg2, ...])
+很明显，我们看标题的可以知道call和apply的一个区别了，它们两个唯一的区别就是传参列表的不同，apply是接收的参数是一个数组。
+
+### 应用场景
+1. 找出数组中最大或最小的元素
+```javascript
+	var a = [10, 2, 4, 15, 9];
+	Math.max.apply(Math, a);//15
+	Math.min.apply(null, a);//2
+```
+2. 可以将一个类似（伪）数组的对象（比如arguments对象）转为真正的数组。
+**前提：**被处理的对象必须有length属性，以及相对应的数字键。
+```javascript
+//接收的是对象，返回的是数组
+Array.prototype.slice.apply({0: 1, length: 1}) // [1]
+Array.prototype.slice.apply({0: 1}) // []
+Array.prototype.slice.apply({0: 1, length: 2}) // [1, undefined]
+Array.prototype.slice.apply({length: 1}) // [undefined]
+//（切下）[].slice(1, n)，返回索引为1到索引为n-1的数组
+```
+3. 数组追加
+```javascript
+var arr1 = [1,2,3];
+var arr2 = [4,5,6];
+[].push.apply(arr1, arr2);
+console.log(arr1);//[1, 2, 3, 4, 5, 6]
+console.log(arr2);//[4, 5, 6]
+```
+4. 数组合并
+```javascript
+var arr1 = [1, 2, { id: 1, id: 2 }, [1, 2]];
+var arr2 = ['ds', 1, 9, { name: 'jack' }];
+// var arr = arr1.concat(arr2);//简单做法
+Array.prototype.push.apply(arr1,arr2)
+console.log(arr1);
+```
+### 手撕apply
+
+```javascript
+	var foo = {
+	  count: 1
+	};
+	function bar() {
+	  console.log(this.count);
+	}
+	bar.myApply(foo); // 1
+--------------------------------------------------------------------
+Function.prototype.myApply = function(context) {
+  var context = context || window;
+  context.fn = this;
+  var result;
+  // 判断第二个参数是否存在，也就是context后面有没有一个数组
+  // 如果存在，则需要展开第二个参数
+  if (arguments[1]) {
+    result = context.fn(...arguments[1]);
+  } else {
+    result = context.fn();
+  }
+  delete context.fn;
+  return result;
+}
+```
+## 四、bind(thisArg[, arg1[, arg2[, ...]]])
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+>call和apply它们两个是改变this的指向之后立即调用该函数，而bind则不同，它是创建一个新函数，我们必须手动去调用它。
+>**MDN说法：**bind()方法创建一个新的函数，在调用时设置this关键字为提供的值。并在调用新函数时，将给定参数列表作为原函数的参数序列的前若干项。（虽然这句话我还不太懂）
+- bind()是ES5新增的一个方法
+- 传参和call或apply类似
+- 不会执行对应的函数，call或apply会自动执行对应的函数
+- bind会返回对函数的引用
+
+#### 举个栗子
+```javascript
+   var a ={
+       name : "Cherry",
+       fn : function (a,b) {
+           console.log( a + b)
+       }
+   }
+   var b = a.fn;
+   b.call(a,1,2);//立即调用该函数
+   b.bind(a,1,2)();//手动调用()，它返回一个原函数的拷贝（新的，不是原函数），并拥有指定的this值和初始参数。
+```
+```javascript
+		var obj = {
+			name:'JuctTr',
+			age: 18
+		};
+		/**
+		 * 给document添加click事件监听，并绑定ExecuteFun函数
+		 * 通过bind方法设置ExecuteFun的this为obj
+		 */
+		//document.addEventListener('click',ExecuteFun.call(obj),false);
+		document.addEventListener('click',ExecuteFun.bind(obj),false);		
+		function ExecuteFun(a,b){
+		    console.log(this.name, this.age);
+		}
+```
+>如果把bind换成call或apply，页面控制台会直接输出JuctTr 18，因为call和apply是改变this的指向之后立即执行ExecuteFun函数，而bind它是返回一个新的函数
+
+### 应用场景
+
+### 手撕bind
+```javascript
+Function.prototype.myBind = function (context) {
+  if (typeof this !== 'function') {
+    throw new TypeError('Error')
+  }
+  var _this = this
+  var args = [...arguments].slice(1)
+  // 返回一个函数
+  return function F() {
+    // 因为返回了一个函数，我们可以 new F()，所以需要判断
+    if (this instanceof F) {
+      return new _this(...args, ...arguments)
+    }
+    return _this.apply(context, args.concat(...arguments))
+  }
+}
+```
+
+------------------
+><span style="font-size:12px">
+	文章标题: <a href="{{permalink}}">{{ title }}</a>
+	文章作者: <a href="https://github.com/WangYiCong">王奕聪，QQ:1301842163</a>  
+	许可协议: <img src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" style="display: inline !important;margin:0;padding:0;" alt="知识共享许可协议">
+			  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">©署名-非商用-相同方式共享 4.0</a>
+</span>

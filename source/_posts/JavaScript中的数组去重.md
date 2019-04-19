@@ -1,7 +1,8 @@
 ---
-title: JavaScript数组去重（12种方法，史上最全）
-date: 2018-09-27 10:48:28
+title: JavaScript数组去重
+date: 2019-04-05 10:48:28
 tags: [JavaScript,编程,Web]
+categories: 前端
 ---
 在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。
 
