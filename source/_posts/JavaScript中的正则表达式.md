@@ -40,8 +40,25 @@ tags: [JavaScript,Web]
 
 ## RegExp实例方法
 ### test()
+
+**接收：**一个字符串参数。
+
+**返回值：**返回一个布尔值。
+
+> 当模式与改参数匹配的情况下返回true，否则为false。
+
+```javascript
+var example = "000-00-0000";
+var pattern = /\d{3}-\d{2}-\d{4};
+if (pattern.test(example)){
+    alert("The pattern was matched.");
+}
+```
+
+
+
 ### exec()
->exec() 接受一个参数，即要应用模式的字符串，然后返回包含第一个匹配项信息的数组；在没有匹配项的情况下返回 null 。返回的数组虽然是 Array 的实例，但包含两个额外的属性： index 和 input 。
+>exec() **接受**一个参数，即要应用模式的字符串，然后返回包含第一个匹配项信息的**数组**；在没有匹配项的情况下返回 null 。返回的数组虽然是 Array 的实例，但包含两个额外的属性： index 和 input 。
 >-  index 表示匹配项在字符串中的位置。
 >- input 表示应用正则表达式的字符串。
 
