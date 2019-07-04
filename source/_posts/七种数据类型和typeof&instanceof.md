@@ -16,7 +16,7 @@ categories: 前端
 >复杂数据类型：**Object**
 >ES6新增的数据类型：**Symbol**
 >对象是最复杂的数据类型，他可以分为三个子类型：**object、array、function**（不正规说法）
-	
+
 - ### typeof操作符
 
 ```javascript
@@ -26,16 +26,17 @@ categories: 前端
 	var u;
 	var o = new Object();
 	function f(){};
-	typeof s;//string
-	typeof b;//boolean
-	typeof n;//object 特殊
-	typeof u;//undefined
-	typeof o;//object
-	typeof f;//function 
-	typeof Symbol();//symbol
-	typeof {};//object
-	typeof [];//object
-	typeof window;//object
+	typeof s; // string
+	typeof b; // boolean
+	typeof n; // object 特殊
+	typeof u; // undefined
+	typeof o; // object
+	typeof f; // function 
+	typeof Symbol(); // symbol
+	typeof {}; // object
+	typeof []; // object
+	typeof window; // object
+	typeof NaN; // number
 ```
 >如上所知：
 #### 当在检测引用类型的时候，typeof它返回的结果都是Object，所以在检测引用值类型的时候typeof的用处并不大，所以我们使用了ECMAScript提供的instanceof操作符来检测引用类型值。
