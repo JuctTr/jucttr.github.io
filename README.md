@@ -19,6 +19,7 @@
 ## JavaScript
 
 - [call、apply、bind的区别与应用场景](https://github.com/WangYiCong/wangyicong.github.io/blob/deployer/source/_posts/call%E3%80%81apply%E3%80%81bind%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF.md)
+- [显式类型转换和隐式类型转换]()
 - [callee、caller详解](https://github.com/WangYiCong/wangyicong.github.io/blob/deployer/source/_posts/callee%E3%80%81caller%E8%AF%A6%E8%A7%A3.md)
 - [JS中的对象克隆（一）](https://github.com/WangYiCong/wangyicong.github.io/blob/deployer/source/_posts/JS%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%85%8B%E9%9A%86%EF%BC%88%E4%B8%80%EF%BC%89.md)
 - [JS中的对象克隆之深度克隆](https://github.com/WangYiCong/wangyicong.github.io/blob/deployer/source/_posts/JS%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%85%8B%E9%9A%86%E4%B9%8B%E6%B7%B1%E5%BA%A6%E5%85%8B%E9%9A%86.md)
