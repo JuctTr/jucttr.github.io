@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-JuctTr.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-JuctTr.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-JuctTr.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,编程,Web,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。">
+<meta name="keywords" content="JavaScript,编程,Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="显式类型转换和隐式类型转换">
+<meta property="og:url" content="http://yoursite.com/2019/07/03/21.显式类型转换和隐式类型转换/index.html">
+<meta property="og:site_name" content="JuctTr">
+<meta property="og:description" content="在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wexqza.bn.files.1drv.com/y4mQL6AoS1CYeIxtPNpnw3jlEPmy6Ltx1B8A7vhlBOesUSwO3TII0jucrz3a7znlns5xJtcuwBGmv5e-NozKXIbDyg6zTOLfObjIpMoysIg_rH93phsR7H9etobewRb3dP_-Ww_tA2JdFDxTXtqSQsCA-gj0UZJfdbudv39a3MpbkI209i5gO9kxUC8uL0jmUqpruD2Dy2i_IXU3KrcFULiyQ?width=500&height=337&cropmode=none">
+<meta property="og:image" content="https://weunyg.bn.files.1drv.com/y4mMmdhHEtw-pwVVBpSqH8w2hJ7cEJ1_aQxXCYl4v9PTlmjbOVqoxYXoEBuF1ttyfN7SOVkXiNmQN0xWCpDBfU9ylJJQRiRqPWD-efPir9uTqMu_hjJxE9jMlFwP3XZOcnH-jdWyJq8Dg_zmYTuOZ9kAXXoyTL8AHzHTyTFHWrcxgSucketorLh-xettRxtH7uvkmLdqhVww3Xi3hR93EhlZQ?width=1000&height=810&cropmode=none">
+<meta property="og:image" content="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png">
+<meta property="og:updated_time" content="2020-01-22T02:26:52.619Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="显式类型转换和隐式类型转换">
+<meta name="twitter:description" content="在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。">
+<meta name="twitter:image" content="https://wexqza.bn.files.1drv.com/y4mQL6AoS1CYeIxtPNpnw3jlEPmy6Ltx1B8A7vhlBOesUSwO3TII0jucrz3a7znlns5xJtcuwBGmv5e-NozKXIbDyg6zTOLfObjIpMoysIg_rH93phsR7H9etobewRb3dP_-Ww_tA2JdFDxTXtqSQsCA-gj0UZJfdbudv39a3MpbkI209i5gO9kxUC8uL0jmUqpruD2Dy2i_IXU3KrcFULiyQ?width=500&height=337&cropmode=none">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/03/21.显式类型转换和隐式类型转换/">
+
+
+
+
+
+  <title>显式类型转换和隐式类型转换 | JuctTr</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JuctTr</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">笔记 分享 总结</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/21.显式类型转换和隐式类型转换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JuctTr">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JuctTr">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">显式类型转换和隐式类型转换</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T20:59:11+08:00">
+                2019-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。</p>
+<a id="more"></a>
+<blockquote>
+<p>先放一张图，可以看出来 <strong>弱类型</strong>、<strong>强类型</strong>、<strong>动态类型</strong>、<strong>静态类型</strong>语言的区别。</p>
+</blockquote>
+<p><img src="https://wexqza.bn.files.1drv.com/y4mQL6AoS1CYeIxtPNpnw3jlEPmy6Ltx1B8A7vhlBOesUSwO3TII0jucrz3a7znlns5xJtcuwBGmv5e-NozKXIbDyg6zTOLfObjIpMoysIg_rH93phsR7H9etobewRb3dP_-Ww_tA2JdFDxTXtqSQsCA-gj0UZJfdbudv39a3MpbkI209i5gO9kxUC8uL0jmUqpruD2Dy2i_IXU3KrcFULiyQ?width=500&amp;height=337&amp;cropmode=none" alt="弱类型、强类型、动态类型、静态类型语言的区别"></p>
+<p><img src="https://weunyg.bn.files.1drv.com/y4mMmdhHEtw-pwVVBpSqH8w2hJ7cEJ1_aQxXCYl4v9PTlmjbOVqoxYXoEBuF1ttyfN7SOVkXiNmQN0xWCpDBfU9ylJJQRiRqPWD-efPir9uTqMu_hjJxE9jMlFwP3XZOcnH-jdWyJq8Dg_zmYTuOZ9kAXXoyTL8AHzHTyTFHWrcxgSucketorLh-xettRxtH7uvkmLdqhVww3Xi3hR93EhlZQ?width=1000&amp;height=810&amp;cropmode=none" alt="弱类型、强类型、动态类型、静态类型语言的区别"></p>
+<h2 id="强-数据-类型语言"><a href="#强-数据-类型语言" class="headerlink" title="强(数据)类型语言"></a>强(数据)类型语言</h2><p>定义：一旦一个变量被指定了某个数据类型，如果不经过强制转换，那么它就永远是这个数据类型了。比如你定义了一个整型变量a，那么我们不能将a当作字符串类型来处理处理。</p>
+<h2 id="弱-数据-类型语言"><a href="#弱-数据-类型语言" class="headerlink" title="弱(数据)类型语言"></a>弱(数据)类型语言</h2><blockquote>
+<p><strong>问题：</strong> 你描述一下为什么javascript是弱类型语言?</p>
+</blockquote>
+<h4 id="弱在哪里？体现在哪？"><a href="#弱在哪里？体现在哪？" class="headerlink" title="弱在哪里？体现在哪？"></a>弱在哪里？体现在哪？</h4><p>JavaScript 声明变量的时候并没有预先确定的类型(只是用var声明)，变量的类型就是其值的类型，也就是说变量当前的类型由其值所决定。虽然弱类型的这种<strong>不需要预先确定类型</strong>的特性给我们带来了便利，同时也会给我们带来困扰。为了能充分利用该特性就必须掌握类型转换的原理。</p>
+<blockquote>
+<p>例子1：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> + <span class="string">'2'</span>; <span class="comment">// a的值输出的是12，而这种情况在“强类型语言”中会报错的</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>例子2：我们var了一个a（它的类型由赋值等号后面的值决定），而在下面还可以对a进行随意修改</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>; </span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a);<span class="comment">// number</span></span><br><span class="line">a = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a);<span class="comment">// boolean</span></span><br><span class="line">a = <span class="string">'12'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a);<span class="comment">// string</span></span><br></pre></td></tr></table></figure>
+<p>等等等等。。。</p>
+<h1 id="显式（强）类型转换"><a href="#显式（强）类型转换" class="headerlink" title="显式（强）类型转换"></a>显式（强）类型转换</h1><h2 id="Number"><a href="#Number" class="headerlink" title="Number()"></a>Number()</h2><blockquote>
+<p>先看一下例子：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>),		<span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>),			<span class="comment">//0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span>),			<span class="comment">//1</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">false</span>),			<span class="comment">//0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">''</span>),				<span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">' '</span>),			<span class="comment">//0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'12'</span>),			<span class="comment">//12</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'012'</span>),			<span class="comment">//12</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'0xff90'</span>),		<span class="comment">//65424</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'5e5'</span>),			<span class="comment">//500000</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'k'</span>),			<span class="comment">//NaN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(&#123;&#125;),				<span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;),	<span class="comment">//NaN</span></span><br><span class="line"><span class="built_in">Number</span>([]),				<span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>([<span class="string">''</span>]),			<span class="comment">//0</span></span><br><span class="line"><span class="built_in">Number</span>([<span class="number">2</span>]),			<span class="comment">//2</span></span><br><span class="line"><span class="built_in">Number</span>([<span class="string">'2'</span>]),			<span class="comment">//2</span></span><br><span class="line"><span class="built_in">Number</span>([<span class="number">2</span>,<span class="number">3</span>]),			<span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
+<p>从上面的例子我们可以得出<strong>Number</strong>运算符的<strong>转换规则</strong>：</p>
+<ul>
+<li>undefined  转换为  NaN</li>
+<li>null  转换为  0</li>
+<li>true  转换为  1，false  转换为  0</li>
+<li>字符串<ol>
+<li>空格字符串转为0</li>
+<li>非空字符串，并且内容为纯数字（包含进制与科学表示法）转成对应的数字</li>
+<li>其余都是NaN，比如<code>Number(&#39;funcation(){}&#39;)或Number(&#39;AB&#39;)</code></li>
+</ol>
+</li>
+<li>数字  转换为  数字本身</li>
+<li><p>对象（引用类型）</p>
+<ol>
+<li><p>如果是对象{}、函数，则转换为  NaN</p>
+</li>
+<li><p>空数组  转换为  0，数组里<strong>只有一个数据</strong>并且这个<strong>数据能转成数字</strong>，则转成对应的数字，其它都转成NaN </p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String()"></a>String()</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(<span class="literal">null</span>),			<span class="comment">//'null'</span></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">undefined</span>)        <span class="comment">// 'undefined'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="number">1</span>)                <span class="comment">// '1'</span></span><br><span class="line"><span class="built_in">String</span>(<span class="number">-1</span>)               <span class="comment">// '-1'</span></span><br><span class="line"><span class="built_in">String</span>(<span class="number">0</span>)                <span class="comment">// '0'</span></span><br><span class="line"><span class="built_in">String</span>(<span class="number">-0</span>)               <span class="comment">// '0'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">Infinity</span>)         <span class="comment">// 'Infinity'</span></span><br><span class="line"><span class="built_in">String</span>(-<span class="literal">Infinity</span>)        <span class="comment">// '-Infinity'</span></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">true</span>)             <span class="comment">// 'true'</span></span><br><span class="line"><span class="comment">/* 引用类型 */</span></span><br><span class="line"><span class="built_in">String</span>([<span class="number">1</span>,[<span class="number">2</span>]]),		<span class="comment">// '1,2'</span></span><br><span class="line"><span class="built_in">String</span>([<span class="number">1</span>,[<span class="number">2</span>,<span class="number">3</span>]])        <span class="comment">// '1,2,3'</span></span><br><span class="line"><span class="built_in">String</span>([<span class="string">'koala'</span>,<span class="number">1</span>])      <span class="comment">// 'koala,1'</span></span><br><span class="line"><span class="built_in">String</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;),	 <span class="comment">// 'function()&#123;&#125;'</span></span><br><span class="line"><span class="built_in">String</span>(&#123;&#125;),				<span class="comment">// '[object Object]'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="built_in">Math</span>.pow(<span class="number">1000</span>,<span class="number">10</span>))<span class="comment">// '1e+30'</span></span><br><span class="line"><span class="built_in">String</span>(<span class="keyword">new</span> <span class="built_in">Date</span>()) <span class="comment">// "Thu Jul 04 2019 10:07:58 GMT+0800 (中国标准时间)"</span></span><br></pre></td></tr></table></figure>
+<p>从上面的例子我们可以得出<strong>String</strong>运算符的<strong>转换规则</strong>：</p>
+<ul>
+<li>基本数据类型、null、undefined的结果就是给数据加上引号变成字符串</li>
+<li><p>引用数据类型</p>
+<ol>
+<li><p>如果是数组，结果为把所有<strong>中括号</strong>去掉，外面加个引号</p>
+</li>
+<li><p>如果是对象，结果为’[object Object]’（除了日期对象）</p>
+</li>
+<li><p>如果是函数，结果为在函数整体外面加个引号 </p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean()"></a>Boolean()</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Boolean</span>(<span class="literal">undefined</span>) 		<span class="comment">// false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">null</span>) 		    <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="number">0</span>)		        <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">NaN</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">''</span>) <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">' '</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Boolean</span>(&#123;&#125;) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Boolean</span>([]) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Boolean</span>(!<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>)) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>从上面的例子我们可以得出<strong>Boolean</strong>运算符的<strong>转换规则</strong>：</p>
+<p>除了下述 6 个值转换结果为 false，其他全部为 true：</p>
+<ol>
+<li><p>undefined</p>
+</li>
+<li><p>null</p>
+</li>
+<li><p>-0或0或+0</p>
+</li>
+<li><p>NaN</p>
+</li>
+<li><p>‘’（空字符串）</p>
+</li>
+</ol>
+<blockquote>
+<p>在这讲一个额外的知识点<strong>Truthy</strong>：</p>
+</blockquote>
+<p>在 <a href="https://developer.mozilla.org/en-US/docs/Glossary/JavaScript" target="_blank" rel="noopener">JavaScript</a> 中，<strong>truthy</strong>（真值）指的是在<a href="https://developer.mozilla.org/en-US/docs/Glossary/Boolean" target="_blank" rel="noopener">布尔值</a>上下文中，转换后的值为真的值。所有值都是真值，除非它们被定义为 <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy" target="_blank" rel="noopener">假值</a>（即除 <code>false</code>、<code>0</code>、<code>&quot;&quot;</code>、<code>null</code>、<code>undefined</code> 和 <code>NaN</code> 以外皆为真值）。</p>
+<p>JavaScript 中的真值示例如下（将被转换为 true，<code>if</code> 后的代码段将被执行）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>)</span><br><span class="line"><span class="keyword">if</span> (&#123;&#125;)</span><br><span class="line"><span class="keyword">if</span> ([])</span><br><span class="line"><span class="keyword">if</span> (<span class="number">42</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">"foo"</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line"><span class="keyword">if</span> (<span class="number">-42</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">3.14</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">-3.14</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">Infinity</span>)</span><br><span class="line"><span class="keyword">if</span> (-<span class="literal">Infinity</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>接下来<strong>重点</strong>来了，那他们三个转换背后的原理是什么？</p>
+</blockquote>
+<h1 id="转换背后的原理"><a href="#转换背后的原理" class="headerlink" title="转换背后的原理"></a>转换背后的原理</h1><blockquote>
+<p>在JavaScript中每一个对象都有一个valueOf()和toString()方法</p>
+</blockquote>
+<h3 id="valueOf-返回该对象对应的原始值"><a href="#valueOf-返回该对象对应的原始值" class="headerlink" title="valueOf()  返回该对象对应的原始值"></a>valueOf()  返回该对象对应的原始值</h3><blockquote>
+<p>JavaScript的许多内置对象（Array、Function、String、Boolean、Number）都<strong>重写</strong>了该函数，以实现更适合自身的功能需要。因此，不同类型对象的valueOf()方法的返回值和返回值类型均可能不同。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>对象</strong></th>
+<th><strong>返回值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Array</td>
+<td>返回数组对象本身。</td>
+</tr>
+<tr>
+<td style="text-align:center">Boolean</td>
+<td>布尔值。</td>
+</tr>
+<tr>
+<td style="text-align:center">Date</td>
+<td>存储的时间是从 1970 年 1 月 1 日午夜开始计的毫秒数 UTC。</td>
+</tr>
+<tr>
+<td style="text-align:center">Function</td>
+<td>函数本身。</td>
+</tr>
+<tr>
+<td style="text-align:center">Number</td>
+<td>数字值。</td>
+</tr>
+<tr>
+<td style="text-align:center">Object</td>
+<td>对象本身。这是默认情况。</td>
+</tr>
+<tr>
+<td style="text-align:center">String</td>
+<td>字符串值。</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>Math 和 Error 对象没有 valueOf 方法。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="toString-返回对象的字符串的表现形式"><a href="#toString-返回对象的字符串的表现形式" class="headerlink" title="toString  返回对象的字符串的表现形式"></a>toString  返回对象的字符串的表现形式</h3><blockquote>
+<p>每个对象都有一个 toString() 方法，当对象被表示为文本值时或者当以期望字符串的方式引用对象时，该方法被自动调用。</p>
+</blockquote>
+<p>这里先记住，valueOf() 和 toString() 在特定的场合下会自行调用。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>对象</strong></th>
+<th style="text-align:left"><strong>返回值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Number</td>
+<td style="text-align:left">数据转成字符串的形式     ，如： ‘123’</td>
+</tr>
+<tr>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:left">数据转成字符串的形式     ，如： ‘true’、’false’</td>
+</tr>
+<tr>
+<td style="text-align:center">String</td>
+<td style="text-align:left">数据转成字符串的形式     ，如： ‘jsldkfjsl’</td>
+</tr>
+<tr>
+<td style="text-align:center">Function</td>
+<td style="text-align:left">在数据外面加了个引号     ，如： ‘function foo(){}’</td>
+</tr>
+<tr>
+<td style="text-align:center">Object</td>
+<td style="text-align:left">“[object Object]”</td>
+</tr>
+<tr>
+<td style="text-align:center">Date</td>
+<td style="text-align:left">“Thu Jul 04 2019 11:53:31 GMT+0800 (中国标准时间)”   当前时间</td>
+</tr>
+</tbody>
+</table>
+<p>​                                         </p>
+<h3 id="Number方法背后的原理"><a href="#Number方法背后的原理" class="headerlink" title="Number方法背后的原理"></a>Number方法背后的原理</h3><blockquote>
+<ol>
+<li>调用对象的<strong>valueOf</strong>方法。如果返回原始类型的值，再使用<strong>Number</strong>函数，不再进行后续步骤。</li>
+<li>如果<strong>valueOf</strong>方法返回的<strong>不是</strong>原始值，则调用<strong>toString</strong>方法。</li>
+<li><strong>toString</strong>方法返回原始类型的值，则对该值使用<strong>Number</strong>函数，不再进行后续步骤。</li>
+<li>如果<strong>toString</strong>方法后返回的依然<strong>不是</strong>原始值，就报错，抛出<code>TypeError</code>异常（一般不会出现）</li>
+</ol>
+</blockquote>
+<h3 id="String方法背后的原理"><a href="#String方法背后的原理" class="headerlink" title="String方法背后的原理"></a>String方法背后的原理</h3><blockquote>
+<ol>
+<li>调用对象的<strong>toString</strong>方法。如果返回原始类型的值，再使用<strong>String</strong>函数，不再进行后续步骤。</li>
+<li>如果<strong>toString</strong>方法返回的<strong>不是</strong>原始值，则调用<strong>valueOf</strong>方法。</li>
+<li><strong>valueOf</strong>方法返回原始类型的值，则对该值使用<strong>String</strong>函数，不再进行后续步骤。</li>
+<li>如果<strong>valueOf</strong>方法后返回的依然<strong>不是</strong>原始值，就报错，抛出<code>TypeError</code>异常（一般不会出现）</li>
+</ol>
+</blockquote>
+<p><strong>注意：</strong><code>两者的调用顺序是相反的</code></p>
+<h1 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">隐式类型转换出现场景</span></span><br><span class="line"><span class="comment">	1、不同类型的数据间运算、比较</span></span><br><span class="line"><span class="comment">	2、对非布尔值类型的数据求布尔值</span></span><br><span class="line"><span class="comment">	3、条件语句的括号里</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">隐式转数字出现的场景</span></span><br><span class="line"><span class="comment">	1、数学运算符（+ - * / %），但是加号运算里不能出现字符串或对象类型数据</span></span><br><span class="line"><span class="comment">    2、一元+-（正负操作符）后的数据</span></span><br><span class="line"><span class="comment">    3、某些比较运算符</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">    <span class="built_in">Number</span>(&#123;<span class="number">1</span>: <span class="number">2</span>&#125;),</span><br><span class="line">    [] + &#123;&#125;, 					<span class="comment">// '[object, Object]'</span></span><br><span class="line">    &#123;&#125; + [], 					<span class="comment">// '[object, Object]'</span></span><br><span class="line">    [] + <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;, 			<span class="comment">// "function()&#123;&#125;"</span></span><br><span class="line">    <span class="number">2</span> + [<span class="number">2</span>,<span class="number">3</span>], 					<span class="comment">// '22,3'</span></span><br><span class="line">    <span class="number">10</span> + <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;, 			<span class="comment">// "10function()&#123;&#125;"</span></span><br><span class="line">    <span class="literal">null</span> + <span class="literal">undefined</span>, 			<span class="comment">// NaN</span></span><br><span class="line">    [] - <span class="number">5</span>, 					<span class="comment">// -5</span></span><br><span class="line">    <span class="string">'6'</span> * [], 					<span class="comment">// 0</span></span><br><span class="line">    <span class="literal">null</span> % <span class="literal">true</span>, 				<span class="comment">// 0 % 1 === 0</span></span><br><span class="line">    <span class="literal">true</span> / [<span class="number">7</span>], 				<span class="comment">// 1 / 7 === 0.14285714285714285</span></span><br><span class="line">    <span class="string">'a'</span>-<span class="string">'b'</span>						<span class="comment">//NaN-NaN=NaN</span></span><br><span class="line">    <span class="string">'A'</span> - <span class="string">'A'</span> + <span class="number">2</span>, 				<span class="comment">// NaN</span></span><br><span class="line">    <span class="number">1</span>+<span class="literal">undefined</span>,		<span class="comment">//NaN</span></span><br><span class="line">    <span class="number">1</span>+<span class="literal">null</span>,				<span class="comment">//1</span></span><br><span class="line">    <span class="number">3</span>+<span class="string">'6'</span>,				<span class="comment">//'36'</span></span><br><span class="line">    <span class="number">2</span>+[],				<span class="comment">//'2'</span></span><br><span class="line">    <span class="number">2</span>+&#123;<span class="attr">a</span>:<span class="number">12</span>&#125;,			<span class="comment">//'2[object Object]'</span></span><br><span class="line">    <span class="number">3</span>+&#123;&#125;,				<span class="comment">//'3[object Object]'</span></span><br><span class="line">    &#123;&#125;+<span class="number">3</span>				<span class="comment">//'[object Object]3'</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">// 逗号运算符 输出括号最后一个</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);		<span class="comment">//1 2 3</span></span><br><span class="line"><span class="built_in">console</span>.log((<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>));	<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<h3 id="两边发生的隐式转换"><a href="#两边发生的隐式转换" class="headerlink" title="==   两边发生的隐式转换"></a>==   两边发生的隐式转换</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">	为什么'12' == 12?我们知道等于true，但是其中的原理是什么?</span></span><br><span class="line"><span class="comment">	1、当==号两边都是原始数据类型的时候，两边都会隐式转换为数字Number(mix)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">    <span class="string">'12'</span> == <span class="number">12</span>,</span><br><span class="line">    <span class="number">0</span> == <span class="string">''</span>,</span><br><span class="line">    <span class="number">1</span> == <span class="literal">true</span>,</span><br><span class="line">    <span class="number">2</span> == <span class="literal">false</span>,</span><br><span class="line">    <span class="string">'true'</span> == <span class="literal">true</span>,</span><br><span class="line">    <span class="string">' '</span> == <span class="literal">false</span>,</span><br><span class="line">    !!<span class="literal">NaN</span> == <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">    <span class="literal">undefined</span> == <span class="number">0</span>,</span><br><span class="line">    <span class="literal">undefined</span> == <span class="string">''</span>,</span><br><span class="line">    <span class="literal">undefined</span> == <span class="literal">false</span>,</span><br><span class="line">    <span class="literal">undefined</span> == <span class="literal">undefined</span>, <span class="comment">// true</span></span><br><span class="line">    <span class="literal">null</span> == <span class="number">0</span>,</span><br><span class="line">    <span class="literal">null</span> == <span class="string">''</span>,</span><br><span class="line">    <span class="literal">null</span> == <span class="literal">false</span>,</span><br><span class="line">    <span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">	2、如果==两边有一边出现对象，</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">    [<span class="number">1</span>] == <span class="number">1</span>,</span><br><span class="line">    [] == <span class="number">0</span>,</span><br><span class="line">    [<span class="number">1</span>] == <span class="literal">true</span>,</span><br><span class="line">    [<span class="number">1</span>, <span class="string">'a'</span>, <span class="number">3</span>] == <span class="string">'1,a,3'</span>,</span><br><span class="line">    [] == <span class="literal">undefined</span>,</span><br><span class="line">    &#123;<span class="attr">a</span>: <span class="number">1</span>&#125; == <span class="number">1</span>,</span><br><span class="line">    [<span class="literal">null</span>] == <span class="literal">null</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="逗号运算符"><a href="#逗号运算符" class="headerlink" title="逗号运算符"></a>逗号运算符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log((<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 题目：</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a++, b++, <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a, b, fn());</span><br><span class="line"><span class="keyword">var</span> c = fn();</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c);</span><br><span class="line"><span class="comment">// 解释：</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>引用：</strong></p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/_THIZY4KTa1IlVb4k9qbJg" target="_blank" rel="noopener">经常被面试官考的JavaScript数据类型知识你真的懂吗？</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf" target="_blank" rel="noopener">MDN</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><span style="font-size:12px"><br>    文章标题: <a href="http://yoursite.com/2019/07/03/21.显式类型转换和隐式类型转换/">显式类型转换和隐式类型转换</a><br>    文章作者: <a href="https://github.com/WangYiCong" target="_blank" rel="noopener">王奕聪，QQ:1301842163</a><br>    许可协议: <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="display: inline !important;margin:0;padding:0;" alt="知识共享许可协议"><br>              <a rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">©署名-非商用-相同方式共享 4.0</a><br></span></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
+          
+            <a href="/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/26/23.HTML5原生拖放/" rel="next" title="HTML5原生拖放">
+                <i class="fa fa-chevron-left"></i> HTML5原生拖放
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/06/25-图片懒加载和预加载的区别/" rel="prev" title="25.图片懒加载和预加载的区别">
+                25.图片懒加载和预加载的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="JuctTr">
+            
+              <p class="site-author-name" itemprop="name">JuctTr</p>
+              <p class="site-description motion-element" itemprop="description">兴趣是主动的的付出，而不是被动的收获。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangYicong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1301842163@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#强-数据-类型语言"><span class="nav-number">1.</span> <span class="nav-text">强(数据)类型语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弱-数据-类型语言"><span class="nav-number">2.</span> <span class="nav-text">弱(数据)类型语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#弱在哪里？体现在哪？"><span class="nav-number">2.0.1.</span> <span class="nav-text">弱在哪里？体现在哪？</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#显式（强）类型转换"><span class="nav-number"></span> <span class="nav-text">显式（强）类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Number"><span class="nav-number">1.</span> <span class="nav-text">Number()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">2.</span> <span class="nav-text">String()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boolean"><span class="nav-number">3.</span> <span class="nav-text">Boolean()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转换背后的原理"><span class="nav-number"></span> <span class="nav-text">转换背后的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#valueOf-返回该对象对应的原始值"><span class="nav-number">0.1.</span> <span class="nav-text">valueOf()  返回该对象对应的原始值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toString-返回对象的字符串的表现形式"><span class="nav-number">0.2.</span> <span class="nav-text">toString  返回对象的字符串的表现形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Number方法背后的原理"><span class="nav-number">0.3.</span> <span class="nav-text">Number方法背后的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String方法背后的原理"><span class="nav-number">0.4.</span> <span class="nav-text">String方法背后的原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隐式类型转换"><span class="nav-number"></span> <span class="nav-text">隐式类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两边发生的隐式转换"><span class="nav-number">0.1.</span> <span class="nav-text">==   两边发生的隐式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逗号运算符"><span class="nav-number">0.2.</span> <span class="nav-text">逗号运算符</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JuctTr</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

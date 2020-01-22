@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-JuctTr.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-JuctTr.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-JuctTr.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。">
+<meta name="keywords" content="JuctTr&#x2F;pedestrian&#x2F;JavaScript&#x2F;web&#x2F;前端&#x2F;博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="46.CSS3动画">
+<meta property="og:url" content="http://yoursite.com/2019/12/06/46-CSS3动画/index.html">
+<meta property="og:site_name" content="JuctTr">
+<meta property="og:description" content="在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:/Users/JuctTr/AppData/Roaming/Typora/typora-user-images/1576140443243.png">
+<meta property="og:image" content="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png">
+<meta property="og:updated_time" content="2020-01-22T02:26:52.622Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="46.CSS3动画">
+<meta name="twitter:description" content="在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。">
+<meta name="twitter:image" content="c:/Users/JuctTr/AppData/Roaming/Typora/typora-user-images/1576140443243.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/06/46-CSS3动画/">
+
+
+
+
+
+  <title>46.CSS3动画 | JuctTr</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JuctTr</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">笔记 分享 总结</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/06/46-CSS3动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JuctTr">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JuctTr">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">46.CSS3动画</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-06T13:48:59+08:00">
+                2019-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。</p>
+<a id="more"></a>
+<h1 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h1><p>animation: name duration timing-function delay iteration-count direction fill-mode play-state ;</p>
+<p>animation : 名称 完成动画所用时间 动画的速度曲线 动画开始之前的延迟 定义动画应该播放多少次 是否应该轮流反向播放动画 设置是否运行或暂停动画;</p>
+<h1 id="animation-name"><a href="#animation-name" class="headerlink" title="animation-name"></a>animation-name</h1><h1 id="animation-duration"><a href="#animation-duration" class="headerlink" title="animation-duration"></a>animation-duration</h1><h1 id="animation-timing-function"><a href="#animation-timing-function" class="headerlink" title="animation-timing-function"></a>animation-timing-function</h1><p>​    下面表格这些属性的值，其实都是一个<timing-function>；而后面这个cubic-bezier(x1, y1, x2, y2)，是让我们自定义自己的立方贝塞尔曲线。</timing-function></p>
+<p>animation-timing-function属性定义CSS动画在每一动画周期中执行的节奏。</p>
+<p><strong>animation-timing-function:  linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n);</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">linear</td>
+<td style="text-align:left">动画从开始到结束具有相同的速度。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">ease</td>
+<td style="text-align:left">动画有一个缓慢的开始，然后快，结束慢。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">ease-in</td>
+<td style="text-align:left">动画有一个缓慢的开始。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">ease-out</td>
+<td style="text-align:left">动画结束缓慢。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">ease-in-out</td>
+<td style="text-align:left">动画具有缓慢的开始和慢的结束。</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">step-start</td>
+<td style="text-align:left">阶跃函数，具体看下面外文第一篇</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">step-end</td>
+<td style="text-align:left">阶跃函数，具体看下面外文第一篇</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">cubic-bezier(<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>)</td>
+<td style="text-align:left">在立方贝塞尔函数中定义速度函数。 可能的值是从0到1的数字值。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>MDN：</strong></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-timing-function" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-timing-function</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/timing-function" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/CSS/timing-function</a></p>
+<p><strong>外文：</strong></p>
+<p><a href="https://tympanus.net/codrops/css_reference/timing-function_value/" target="_blank" rel="noopener">https://tympanus.net/codrops/css_reference/timing-function_value/</a></p>
+<p><a href="https://www.the-art-of-web.com/css/timing-function/" target="_blank" rel="noopener">https://www.the-art-of-web.com/css/timing-function/</a></p>
+</blockquote>
+<h3 id="模拟-立方贝塞尔曲线-的网站："><a href="#模拟-立方贝塞尔曲线-的网站：" class="headerlink" title="模拟 立方贝塞尔曲线 的网站："></a>模拟 立方贝塞尔曲线 的网站：</h3><p><a href="https://cubic-bezier.com" target="_blank" rel="noopener">https://cubic-bezier.com</a></p>
+<p><img src="C:\Users\JuctTr\AppData\Roaming\Typora\typora-user-images\1576140443243.png" alt="1576140443243"></p>
+<h1 id="animation-delay"><a href="#animation-delay" class="headerlink" title="animation-delay"></a>animation-delay</h1><h1 id="animation-iteration-count"><a href="#animation-iteration-count" class="headerlink" title="animation-iteration-count"></a>animation-iteration-count</h1><p>设置动画重复次数， 可以指定infinite无限次重复动画</p>
+<h1 id="animation-direction"><a href="#animation-direction" class="headerlink" title="animation-direction"></a>animation-direction</h1><h1 id="animation-fill-mode"><a href="#animation-fill-mode" class="headerlink" title="animation-fill-mode"></a>animation-fill-mode</h1><p><strong>值：none | forwards | backwards | both | initial | inherit ;</strong></p>
+<p>是否应该轮流反向播放动画</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-fill-mode" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-fill-mode</a></p>
+<p><a href="https://www.cnblogs.com/lyzg/p/5738860.html" target="_blank" rel="noopener">https://www.cnblogs.com/lyzg/p/5738860.html</a></p>
+</blockquote>
+<h1 id="animation-play-state"><a href="#animation-play-state" class="headerlink" title="animation-play-state"></a>animation-play-state</h1><blockquote>
+<p>w3cschool文档：<a href="https://www.w3cschool.cn/cssref/pr-animation.html" target="_blank" rel="noopener">https://www.w3cschool.cn/cssref/pr-animation.html</a></p>
+<p>MDN文档：<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations/Using_CSS_animations" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations/Using_CSS_animations</a></p>
+</blockquote>
+<blockquote>
+<p><span style="font-size:12px"><br>    文章标题: <a href="http://yoursite.com/2019/12/06/46-CSS3动画/">46.CSS3动画</a><br>    文章作者: <a href="https://github.com/WangYiCong" target="_blank" rel="noopener">王奕聪，QQ:1301842163</a><br>    许可协议: <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="display: inline !important;margin:0;padding:0;" alt="知识共享许可协议"><br>              <a rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">©署名-非商用-相同方式共享 4.0</a><br></span></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/09/45-isNaN-函数的机制/" rel="next" title="45.isNaN()函数的机制">
+                <i class="fa fa-chevron-left"></i> 45.isNaN()函数的机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/06/47-常用的Sass语法/" rel="prev" title="47.常用的Sass语法">
+                47.常用的Sass语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="JuctTr">
+            
+              <p class="site-author-name" itemprop="name">JuctTr</p>
+              <p class="site-description motion-element" itemprop="description">兴趣是主动的的付出，而不是被动的收获。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangYicong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1301842163@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#animation"><span class="nav-number">1.</span> <span class="nav-text">animation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-name"><span class="nav-number">2.</span> <span class="nav-text">animation-name</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-duration"><span class="nav-number">3.</span> <span class="nav-text">animation-duration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-timing-function"><span class="nav-number">4.</span> <span class="nav-text">animation-timing-function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟-立方贝塞尔曲线-的网站："><span class="nav-number">4.0.1.</span> <span class="nav-text">模拟 立方贝塞尔曲线 的网站：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-delay"><span class="nav-number">5.</span> <span class="nav-text">animation-delay</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-iteration-count"><span class="nav-number">6.</span> <span class="nav-text">animation-iteration-count</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-direction"><span class="nav-number">7.</span> <span class="nav-text">animation-direction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-fill-mode"><span class="nav-number">8.</span> <span class="nav-text">animation-fill-mode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#animation-play-state"><span class="nav-number">9.</span> <span class="nav-text">animation-play-state</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JuctTr</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

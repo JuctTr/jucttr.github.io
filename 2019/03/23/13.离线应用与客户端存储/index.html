@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-JuctTr.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-JuctTr.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-JuctTr.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Web,网络,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。">
+<meta name="keywords" content="Web,网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="离线应用与客户端存储">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/13.离线应用与客户端存储/index.html">
+<meta property="og:site_name" content="JuctTr">
+<meta property="og:description" content="在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://onfdgq.bn.files.1drv.com/y4m36c_soiQpWmmjxv4sFJO6kNrxC9TEouP1CiKu5bQat89Z99tQjI9DRuqVbgdmX2f5Z3PtKubYuzgyB2QKauvJQtl4bQrzHCxT3mwu8DbZRtY5YWiKuLKM04K7QK-Rs7jBMIwJ8ndloWsLDwDxLePy7kKCp71TE0B2aTzmU6XMDxFWuOSPN8hyOObGp1oXic_IGY46fak8hCEHcrkxQzNng?width=690&height=667&cropmode=none">
+<meta property="og:image" content="https://oneu3w.bn.files.1drv.com/y4mL_XihzARC87inCnIyX2XXMdCASBkAMM8SH7Y1c8ws6s4I9cnBjNfz96u8gi5jEqoyKdUoqfWwUVDZI--wL0i0xQuZFhGxiQNbVg95h9KJ0kwcsDUsFJPt6Q5Uyxsp0rdOssxWCNlhd_OMX2Edqm27MKP3YpADDoSYacYn1HXpsZk8dZHSV9-Bc6z4JE3wHBAjgoH5pC9o1wZQK2QwkBVrw?width=690&height=192&cropmode=none">
+<meta property="og:image" content="https://onf5ag.bn.files.1drv.com/y4miL2L7OQuO09LkxO9kuNNe8BWiDhqnqPBtHGcIYZDQTT4XkbhoXGftaBQ_mSdDnc67dWlPK99ZgZV9nJ4ZmFfFXPx3N7V9g6oDzL_fb0uOjHkUrSAhvBqdmICkf8_7l_DlD4FALki_vJWzapbVchbUXtWlMDNpx6scx9Ajv8NQaI_z13BJ6Y00C2BM_068ricpvemBpsU-mPUig98SasgDg?width=690&height=148&cropmode=none">
+<meta property="og:image" content="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png">
+<meta property="og:updated_time" content="2020-01-22T02:26:52.618Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="离线应用与客户端存储">
+<meta name="twitter:description" content="在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。">
+<meta name="twitter:image" content="https://onfdgq.bn.files.1drv.com/y4m36c_soiQpWmmjxv4sFJO6kNrxC9TEouP1CiKu5bQat89Z99tQjI9DRuqVbgdmX2f5Z3PtKubYuzgyB2QKauvJQtl4bQrzHCxT3mwu8DbZRtY5YWiKuLKM04K7QK-Rs7jBMIwJ8ndloWsLDwDxLePy7kKCp71TE0B2aTzmU6XMDxFWuOSPN8hyOObGp1oXic_IGY46fak8hCEHcrkxQzNng?width=690&height=667&cropmode=none">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/23/13.离线应用与客户端存储/">
+
+
+
+
+
+  <title>离线应用与客户端存储 | JuctTr</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JuctTr</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">笔记 分享 总结</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/23/13.离线应用与客户端存储/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JuctTr">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JuctTr">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">离线应用与客户端存储</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-23T10:46:45+08:00">
+                2019-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在学习JavaScript的一些总结和经验，供大家参考和学习，同时也欢迎大家参与讨论。<br><a id="more"></a></p>
+<h1 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h1><h2 id="Cookie的由来"><a href="#Cookie的由来" class="headerlink" title="Cookie的由来"></a>Cookie的由来</h2><p>学过http的同学都知道，http是一种不保存状态的协议，即无状态（stateless）协议。</p>
+<h3 id="什么是不保存状态？"><a href="#什么是不保存状态？" class="headerlink" title="什么是不保存状态？"></a>什么是不保存状态？</h3><ul>
+<li>http协议自身<strong>不对</strong>请求和响应之间的通信状态进行保存，协议本身并不保留之前一切的请求或响应报文的信息，也就是一个服务器是不清楚是不是同一个浏览器在访问它的。举个栗子，假设要求登录认证的web页面本身无法进行状态的管理（不记录已登录的状态），那么每次跳转页面就要再次登录。</li>
+<li>于是就引入了Cookie技术，它通过在请求和响应报文中写入cookie信息来控制客户端的状态。</li>
+</ul>
+<h2 id="Cookie的原理"><a href="#Cookie的原理" class="headerlink" title="Cookie的原理"></a>Cookie的原理</h2><p> <img src="https://onfdgq.bn.files.1drv.com/y4m36c_soiQpWmmjxv4sFJO6kNrxC9TEouP1CiKu5bQat89Z99tQjI9DRuqVbgdmX2f5Z3PtKubYuzgyB2QKauvJQtl4bQrzHCxT3mwu8DbZRtY5YWiKuLKM04K7QK-Rs7jBMIwJ8ndloWsLDwDxLePy7kKCp71TE0B2aTzmU6XMDxFWuOSPN8hyOObGp1oXic_IGY46fak8hCEHcrkxQzNng?width=690&amp;height=667&amp;cropmode=none" alt="Cookie原理"></p>
+<h2 id="Cookie的构成（属性）"><a href="#Cookie的构成（属性）" class="headerlink" title="Cookie的构成（属性）"></a>Cookie的构成（属性）</h2><ul>
+<li><strong>名称（name）：</strong>cookie 名称是<strong>不区分大小写</strong>的，不过实践中最好将 cookie 名称看作是区分大小写的，因为某些服务器会这样处理 cookie。cookie 的名称必须是经过 URL 编码的。</li>
+<li><strong>值（value）：</strong>储存在 cookie 中的字符串值。值必须被 URL 编码。要解码的话必须使用decodeURIComponent()来解码。</li>
+<li><strong>域（domain）：</strong></li>
+<li><strong>路径（path）：</strong></li>
+<li><strong>失效时间/有效期（Expires/Max-Age）：</strong>默认情况下，浏览器<strong>会话结束</strong>时即将所有 cookie 删除；不过也可以自己设置删除时间。Max-Age，是以秒为单位的，Max-Age为正数时，cookie会在Max-Age秒之后，被删除，当Max-Age为负数时，表示的是临时储存，不会生出cookie文件，只会存在浏览器内存中，且只会在打开的浏览器窗口或者子窗口有效，一旦浏览器关闭，cookie就会消失。</li>
+<li><strong>安全标志（secure）：</strong>当这个属性设置为true时，此cookie只会在https和ssl等安全协议下传输（发送给服务器） 。</li>
+<li><p><strong>HttpOnly：</strong>如果这个属性设置为true，就不能通过js脚本来获取cookie的值（document.cookie），能有效的防止<strong>XSS攻击</strong>。</p>
+<p><img src="https://oneu3w.bn.files.1drv.com/y4mL_XihzARC87inCnIyX2XXMdCASBkAMM8SH7Y1c8ws6s4I9cnBjNfz96u8gi5jEqoyKdUoqfWwUVDZI--wL0i0xQuZFhGxiQNbVg95h9KJ0kwcsDUsFJPt6Q5Uyxsp0rdOssxWCNlhd_OMX2Edqm27MKP3YpADDoSYacYn1HXpsZk8dZHSV9-Bc6z4JE3wHBAjgoH5pC9o1wZQK2QwkBVrw?width=690&amp;height=192&amp;cropmode=none" alt="Alt text"></p>
+<p><img src="https://onf5ag.bn.files.1drv.com/y4miL2L7OQuO09LkxO9kuNNe8BWiDhqnqPBtHGcIYZDQTT4XkbhoXGftaBQ_mSdDnc67dWlPK99ZgZV9nJ4ZmFfFXPx3N7V9g6oDzL_fb0uOjHkUrSAhvBqdmICkf8_7l_DlD4FALki_vJWzapbVchbUXtWlMDNpx6scx9Ajv8NQaI_z13BJ6Y00C2BM_068ricpvemBpsU-mPUig98SasgDg?width=690&amp;height=148&amp;cropmode=none" alt="Alt text"></p>
+</li>
+</ul>
+<h3 id="Cookie的限制"><a href="#Cookie的限制" class="headerlink" title="Cookie的限制"></a>Cookie的限制</h3><blockquote>
+<p>cookie 在性质上是绑定在特定的域名下的。当设定了一个 cookie 后，再给创建它的域名发送请求时，都会包含这个 cookie。这个限制确保了储存在 cookie 中的信息只能让批准的接受者访问，而无法被其他域访问。</p>
+</blockquote>
+<ul>
+<li><h4 id="cookie不可跨域"><a href="#cookie不可跨域" class="headerlink" title="cookie不可跨域"></a>cookie不可跨域</h4>Cookie遵循同源政策，每个cookie都会绑定单一的域名，只有用服务器域名设置的Cookie才会上传，其他域名的Cookie并不会上传，且（跨源）原网页代码中的document.cookie也无法读取服务器域名下的Cookie。</li>
+</ul>
+<h1 id="session"><a href="#session" class="headerlink" title="session"></a>session</h1><p>除了可以将用户信息通过 Cookie 存储在用户浏览器中，也可以利用 Session 存储在<strong>服务器端</strong>，存储在服务器端的信息更加安全。</p>
+<p>Session 可以存储在服务器上的文件、数据库或者内存中。也可以将 Session 存储在 Redis 这种内存型数据库中，效率会更高。</p>
+<p>使用 Session 维护用户登录状态的过程如下：</p>
+<ul>
+<li>用户进行登录时，用户提交包含用户名和密码的表单，放入 HTTP 请求报文中；</li>
+<li>服务器验证该用户名和密码，如果正确则把用户信息存储到 Redis 中，它在 Redis 中的 Key 称为 Session ID；</li>
+<li>服务器返回的响应报文的 Set-Cookie 首部字段包含了这个 Session ID，客户端收到响应报文之后将该 Cookie 值存入浏览器中；</li>
+<li>客户端之后对同一个服务器进行请求时会包含该 Cookie 值，服务器收到之后提取出 Session ID，从 Redis 中取出用户信息，继续之前的业务操作。</li>
+</ul>
+<p>应该注意 Session ID 的安全性问题，不能让它被恶意攻击者轻易获取，那么就不能产生一个容易被猜到的 Session ID 值。此外，还需要经常重新生成 Session ID。在对安全性要求极高的场景下，例如转账等操作，除了使用 Session 管理用户状态之外，还需要对用户进行重新验证，比如重新输入密码，或者使用短信验证码等方式。</p>
+<h1 id="Cookie-与-Session-选择"><a href="#Cookie-与-Session-选择" class="headerlink" title="Cookie 与 Session 选择"></a>Cookie 与 Session 选择</h1><ul>
+<li><p><strong>存储值类型不同：</strong>Cookie 只能存储 <strong>ASCII 码字符串</strong>，想要设置其他类型的数据，需要将其转换成字符串，而 Session 则可以存储任何类型的数据，因此在考虑<strong>数据复杂性</strong>时首选Session；</p>
+</li>
+<li><p><strong>安全性：</strong>Cookie 存储在浏览器中，容易被恶意查看。如果非要将一些隐私数据存在 Cookie 中，可以将 Cookie 值进行加密，然后在服务器进行解密；</p>
+</li>
+<li><p>对于大型网站，如果用户所有的信息都存储在 Session 中，那么开销是非常大的，因此不建议将所有的用户信息都存储到 Session 中。</p>
+<h1 id="JSON-Web-Tokens（令牌）"><a href="#JSON-Web-Tokens（令牌）" class="headerlink" title="JSON  Web  Tokens（令牌）"></a>JSON  Web  Tokens（令牌）</h1><p>上面这种模式的问题在于，<strong>扩展性（scaling）不好</strong>。单机当然没有问题，如果是服务器集群，或者是跨域的服务导向架构，就<strong>要求 session 数据共享</strong>，每台服务器都能够读取 session。</p>
+<p>举例来说，A 网站和 B 网站是同一家公司的关联服务。现在要求，用户只要在其中一个网站登录，再访问另一个网站就会自动登录，请问怎么实现？</p>
+<p>一种解决方案是 session 数据持久化，写入数据库或别的持久层。各种服务收到请求后，都向持久层请求数据。这种方案的优点是架构清晰，缺点是工程量比较大。另外，持久层万一挂了，就会单点失败。</p>
+<p>另一种方案是服务器索性不保存 session 数据了，所有数据都保存在客户端，每次请求都发回服务器。JWT 就是这种方案的一个代表。</p>
+</li>
+</ul>
+<blockquote>
+<p>引用：<a href="https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html</a></p>
+</blockquote>
+<h1 id="Web-存储机制（Web-Storage）"><a href="#Web-存储机制（Web-Storage）" class="headerlink" title="Web 存储机制（Web Storage）"></a>Web 存储机制（Web Storage）</h1><p><strong>目的：</strong>克服由 cookie 带来的一些限制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。<br><strong>目标：</strong></p>
+<ul>
+<li>提供一种在 cookie 之外存储会话数据的途径；</li>
+<li>提供一种存储大量可以跨会话存在的数据的机制。</li>
+</ul>
+<h2 id="构造函数Storage"><a href="#构造函数Storage" class="headerlink" title="构造函数Storage"></a>构造函数Storage</h2><p> 方法：</p>
+<ul>
+<li>clear()：删除所有值；Firefox 中没有实现 。</li>
+<li>getItem(name)：根据指定的名字 name 获取对应的值。</li>
+<li>key(index) ：获得 index 位置处的值的名字。</li>
+<li>removeItem(name) ：删除由 name 指定的名值对儿。</li>
+<li>setItem(name, value) ：为指定的 name 设置一个对应的值。</li>
+</ul>
+<h2 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h2><blockquote>
+<p>sessionStorage对象是Storage的一个实例</p>
+</blockquote>
+<ol>
+<li>存储某个会话的数据，该数据只保持到浏览器关闭。</li>
+<li>sessionStorage中的数据可以<strong>跨越页面刷新</strong>而存在</li>
+<li>如果浏览器支持，浏览器崩溃并重启之后依然可用（Firefox 和 WebKit 都支持，IE 则不行）。</li>
+</ol>
+<h2 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h2><blockquote>
+<p>localStorage对象是Storage的一个实例</p>
+</blockquote>
+<ol>
+<li>localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。</li>
+<li>与globalStorage不同，不能给localStorage指定任何访问规则。</li>
+<li>要访问同一个 localStorage 对象，页面必须来自同一个域名（子域名无效），使用同一种<br>协议，在同一个端口上。（所谓同源策略）</li>
+<li>localStorage 无法通过设置失效时间来自动失效。</li>
+</ol>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><ul>
+<li>对于 localStorage 而言，大多数桌面浏览器会设置每个来源 5MB 的限制。Chrome 和 Safari 对每<br>个来源的限制是 2.5MB。而 iOS 版 Safari 和 Android 版 WebKit 的限制也是 2.5MB。</li>
+<li>对 sessionStorage 的限制也是因浏览器而异。有的浏览器对 sessionStorage 的大小没有限制，<br>但 Chrome、Safari、iOS 版 Safari 和 Android 版 WebKit 都有限制，也都是 2.5MB。IE8+和 Opera 对<br>sessionStorage 的限制是 5MB。</li>
+</ul>
+<h2 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h2><blockquote>
+<p>参考：<a href="https://juejin.im/post/5e055d9ef265da33997a42cc#heading-19" target="_blank" rel="noopener">https://juejin.im/post/5e055d9ef265da33997a42cc#heading-19</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p><span style="font-size:12px"><br>    文章标题: <a href="http://yoursite.com/2019/03/23/13.离线应用与客户端存储/">离线应用与客户端存储</a><br>    文章作者: <a href="https://github.com/WangYiCong" target="_blank" rel="noopener">王奕聪，QQ:1301842163</a><br>    许可协议: <img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" style="display: inline !important;margin:0;padding:0;" alt="知识共享许可协议"><br>              <a rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">©署名-非商用-相同方式共享 4.0</a><br></span></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Web/" rel="tag"># Web</a>
+          
+            <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/17/20.书本中没遇到的小知识点/" rel="next" title="书本中没遇到的小知识点">
+                <i class="fa fa-chevron-left"></i> 书本中没遇到的小知识点
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/26/8.callee、caller详解/" rel="prev" title="callee、caller详解">
+                callee、caller详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="JuctTr">
+            
+              <p class="site-author-name" itemprop="name">JuctTr</p>
+              <p class="site-description motion-element" itemprop="description">兴趣是主动的的付出，而不是被动的收获。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangYicong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1301842163@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据存储"><span class="nav-number">1.</span> <span class="nav-text">数据存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie的由来"><span class="nav-number">1.1.</span> <span class="nav-text">Cookie的由来</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是不保存状态？"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是不保存状态？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie的原理"><span class="nav-number">1.2.</span> <span class="nav-text">Cookie的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie的构成（属性）"><span class="nav-number">1.3.</span> <span class="nav-text">Cookie的构成（属性）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie的限制"><span class="nav-number">1.3.1.</span> <span class="nav-text">Cookie的限制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie不可跨域"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">cookie不可跨域</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#session"><span class="nav-number">2.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie-与-Session-选择"><span class="nav-number">3.</span> <span class="nav-text">Cookie 与 Session 选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSON-Web-Tokens（令牌）"><span class="nav-number">4.</span> <span class="nav-text">JSON  Web  Tokens（令牌）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-存储机制（Web-Storage）"><span class="nav-number">5.</span> <span class="nav-text">Web 存储机制（Web Storage）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数Storage"><span class="nav-number">5.1.</span> <span class="nav-text">构造函数Storage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sessionStorage"><span class="nav-number">5.2.</span> <span class="nav-text">sessionStorage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#localStorage"><span class="nav-number">5.3.</span> <span class="nav-text">localStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#限制"><span class="nav-number">5.3.1.</span> <span class="nav-text">限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IndexedDB"><span class="nav-number">5.4.</span> <span class="nav-text">IndexedDB</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JuctTr</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
